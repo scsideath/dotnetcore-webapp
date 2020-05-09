@@ -39,7 +39,7 @@ jobs:
           dotnet build --configuration Release
           dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
       
-      # Run Snyk to check for vulnerabilities
+      # Run Snyk to check for SCA vulnerabilities
       - name: Snyk
         uses: snyk/actions@0.1.1
     
