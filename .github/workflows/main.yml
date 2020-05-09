@@ -40,10 +40,17 @@ jobs:
           dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
       
       # Run Snyk to check for SCA vulnerabilities
-      - name: Snyk
-        uses: snyk/actions/dotnet@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN  }} 
+      #- name: Snyk
+      #  uses: snyk/actions/dotnet@master
+      #  env:
+      #    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN  }} 
+      
+      # Run Trufflehog to scan for secrets
+      - uses: actions/checkout@master
+      - name: trufflehog-actions-scan
+        uses: edplato/trufflehog-actions-scan@master
+        with:
+          scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json" # Add custom options here*
     
       # Deploy to Azure Web apps
       - name: 'Run Azure webapp deploy action using publish profile credentials'
