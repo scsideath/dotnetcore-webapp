@@ -39,8 +39,8 @@ jobs:
           dotnet build --configuration Release
           dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
       
-      # Run Snyk to check for insecure dependencies
-        - name: Snyk
+      # Run Snyk to check for vulnerabilities
+      - name: Snyk
         uses: snyk/actions@0.1.1
     
       # Deploy to Azure Web apps
