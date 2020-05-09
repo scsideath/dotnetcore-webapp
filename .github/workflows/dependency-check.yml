@@ -23,7 +23,7 @@ jobs:
       uses: sburris/dependency-check-action@v0.1-beta
       with:
         Project-Name: TestApp
-        # The directory path specified here is specific to inside the docker container
+        # The directory path specified here is specific to inside the docker container.
         Report-Location: /github/workspace/dcReports
         Report-Format: HTML
         Log-Name: MyLog.txt
